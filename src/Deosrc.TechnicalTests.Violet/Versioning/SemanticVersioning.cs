@@ -9,6 +9,11 @@ public class SemanticVersioning : IVersioning
 		if (!SemVersion.TryParse(currentVersion, out var parsedVersion))
 			throw new InvalidDataException($"Version number '{currentVersion}' is not a supported semantic version format.");
 
-		throw new NotImplementedException();
+		return releaseType switch
+		{
+			ReleaseType.Patch => parsedVersion.WithPatch(parsedVersion.Patch + 1).ToString(),
+			ReleaseType.Minor => parsedVersion.WithMinor(parsedVersion.Minor + 1).ToString(),
+			_ => throw new NotSupportedException($"Release type '{releaseType}' is not supported.")
+		};
 	}
 }
