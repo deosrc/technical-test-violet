@@ -46,7 +46,7 @@ public class SemanticVersioningTests
 		}
 
 		var ex = Assert.Throws<InvalidDataException>(act);
-		Assert.Equal($"Version number '{versionNumber}' in not a valid semantic versioning format.", ex.Message);
+		Assert.Equal($"Version number '{versionNumber}' is not a supported semantic version format.", ex.Message);
 	}
 
 	[Theory]
