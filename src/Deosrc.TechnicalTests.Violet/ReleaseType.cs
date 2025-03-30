@@ -1,6 +1,7 @@
 ﻿namespace Deosrc.TechnicalTests.Violet;
 
-public class Class1
+public enum ReleaseType
 {
-
+	Patch = 1,
+	Minor = 2
 }
