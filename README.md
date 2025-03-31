@@ -24,3 +24,15 @@ VSCode may take a few minutes to build the container on first run. Once fully lo
 Unit tests can be executed from the "Testing" tab.
 
 > :warning: There seems to be a bug where the tests may not display when the container is first built. This can usually resolved by restarting VSCode.
+
+## Design Decisions
+
+- The method used for writing the JSON file will retain all data structures, but may make changes to the file such as adjusting whitespace or removing comments (comments are not valid JSON). This was intentional so that the application can also act to clean the file and keep it consistent. In a real world scenario, questions would be raised to gain a better understanding of the purpose of the file, and make an appropriate recommendation.
+
+## Known Issues/Limitations
+
+A number of known issues/limitations exist in this first version:
+
+- The implementation for reading and writing to the filesystem has no tests. Given it uses an external resource (filesystem), it is intended to be covered by end-to-end testing. This could be implemented using xUnit.
+- There is currently no dependency injection framework used, with services initialised and injected manually instead.
+- CLI arguments are currently positional, and use a simple parsing mechanism. It would be beneficial to convert this to use the configuration components sof .NET so that various providers could be used, in addition to making the CLI arguments named.

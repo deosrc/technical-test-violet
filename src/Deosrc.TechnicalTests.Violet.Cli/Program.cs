@@ -1,10 +1,11 @@
-﻿using Deosrc.TechnicalTests.Violet.Versioning;
+﻿using System.Diagnostics.CodeAnalysis;
+using Deosrc.TechnicalTests.Violet.Versioning;
 
 namespace Deosrc.TechnicalTests.Violet.Cli;
 
 class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
 		// Read and validate arguments.
         Console.WriteLine("Violet (Version Incrementer)");
@@ -28,11 +29,13 @@ class Program
 
 		// Prepare services
 		var versioning = new SemanticVersioning();
+		var versionFileUpdater = new VersionFileUpdater(versioning);
 
-		// TODO: Run violet
+		// Run violet
+		await versionFileUpdater.IncrementVersionAsync(options.FilePath, options.ReleaseType);
     }
 
-	private static bool TryParseArgs(string[] args, out VioletOptions? options)
+	private static bool TryParseArgs(string[] args, [NotNullWhen(true)] out VioletOptions? options)
 	{
 		options = null;
 
