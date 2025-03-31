@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Deosrc.TechnicalTests.Violet.DataStructure;
 using Deosrc.TechnicalTests.Violet.Versioning;
 
 namespace Deosrc.TechnicalTests.Violet.Cli;
@@ -29,7 +30,8 @@ class Program
 
 		// Prepare services
 		var versioning = new SemanticVersioning();
-		var versionFileUpdater = new VersionFileUpdater(versioning);
+		var dataUpdater = new StructuredVersionDataUpdater(new(), versioning);
+		var versionFileUpdater = new VersionFileUpdater(dataUpdater);
 
 		// Run violet
 		await versionFileUpdater.IncrementVersionAsync(options.FilePath, options.ReleaseType);

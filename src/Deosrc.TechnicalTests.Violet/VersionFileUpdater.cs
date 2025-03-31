@@ -1,10 +1,10 @@
 
 using System.Text.Json;
-using Deosrc.TechnicalTests.Violet.Versioning;
+using Deosrc.TechnicalTests.Violet.DataStructure;
 
 namespace Deosrc.TechnicalTests.Violet;
 
-public class VersionFileUpdater(IVersioning versioning) : IVersionFileUpdater
+public class VersionFileUpdater(IVersionDataUpdater<IDictionary<string, object?>> dataUpdater) : IVersionFileUpdater
 {
 	public async Task IncrementVersionAsync(string filePath, ReleaseType releaseType, CancellationToken cancellationToken = default)
 	{
@@ -25,12 +25,8 @@ public class VersionFileUpdater(IVersioning versioning) : IVersionFileUpdater
 			throw new InvalidDataException("Invalid or unexpected JSON format.", ex);
 		}
 
-		// Get the version property
-		var version = contents.GetValueOrDefault("Version")
-			?? throw new InvalidDataException("Failed to read 'Version' property.");
-
-		// Update the version number
-		contents["Version"] = versioning.IncrementVersion(version.ToString() ?? string.Empty, releaseType);
+		// Update the data
+		dataUpdater.IncrementVersion(contents, releaseType);
 
 		// Write the data back to the file
 		using (var file = File.Open(filePath, FileMode.Create))
