@@ -1,0 +1,12 @@
+{
+  "Version": "1.6.23",
+  "Patch": {
+    "Name": "Patch022024",
+    "Directory": "Patch022024",
+    "Ordinal": "1",
+    "Scripts": [
+      "script1.sql",
+      "script2.sql"
+    ]
+  }
+}
