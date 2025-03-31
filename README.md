@@ -19,7 +19,7 @@ Due to installation and licensing issues, the solution was developed using Visua
 2. Open the repository folder in VSCode.
 3. When prompted, click the button to "Reopen in Container". Alternatively, press `F1`, and select `Dev Containers: Reopen in Container".
 
-VSCode may take a few minutes to build the container on first run. Once fully loaded, you can execute the CLI by pressing `F5` as normal. CLI arguments can be set in `.vscode/launch.json`.
+VSCode may take a few minutes to build the container on first run. Once fully loaded, you can execute the CLI by pressing `F5` as normal. CLI arguments can be set in `.vscode/launch.json`. Available arguments will be output to the console when running the application if no arguments or invalid arguments are provided.
 
 Unit tests can be executed from the "Testing" tab.
 
@@ -27,7 +27,7 @@ Unit tests can be executed from the "Testing" tab.
 
 ## Design Decisions
 
-- The method used for writing the JSON file will retain all data structures, but may make changes to the file such as adjusting whitespace or removing comments (comments are not valid JSON). This was intentional so that the application can also act to clean the file and keep it consistent. In a real world scenario, questions would be raised to gain a better understanding of the purpose of the file, and make an appropriate recommendation.
+- The method used for writing the JSON file will retain all data structures, but may make changes to the file such as adjusting whitespace or removing comments (comments are not valid JSON). This was intentional so that the application can also act to clean the file and keep it consistent. In a real world scenario, questions would be raised to gain a better understanding of the purpose of the file, and make a more informed decision/recommendation.
 
 ## Known Issues/Limitations
 
