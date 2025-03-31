@@ -10,11 +10,11 @@ public class StructuredVersionDataUpdater(StructuredVersionDataUpdaterOptions op
 	public IDictionary<string, object?> IncrementVersion(IDictionary<string, object?> dataStructure, ReleaseType releaseType)
 	{
 		// Get the version property
-		if (!dataStructure.TryGetValue(options.VersionPropertyKey, out var version))
+		if (!dataStructure.TryGetValue(options.VersionPropertyKey, out var version) || version is null)
 			throw new InvalidDataException($"Failed to read '{options.VersionPropertyKey}' property.");
 
 		// Update the version number
-		dataStructure["Version"] = versioning.IncrementVersion(version.ToString() ?? string.Empty, releaseType);
+		dataStructure[options.VersionPropertyKey] = versioning.IncrementVersion(version.ToString() ?? string.Empty, releaseType);
 
 		return dataStructure;
 	}
