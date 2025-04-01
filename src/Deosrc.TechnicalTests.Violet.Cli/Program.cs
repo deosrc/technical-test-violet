@@ -6,10 +6,10 @@ namespace Deosrc.TechnicalTests.Violet.Cli;
 
 class Program
 {
-    static async Task Main(string[] args)
-    {
+	static async Task Main(string[] args)
+	{
 		// Read and validate arguments.
-        Console.WriteLine("Violet (Version Incrementer)");
+		Console.WriteLine("Violet (Version Incrementer)");
 			Console.WriteLine();
 
 		if (!TryParseArgs(args, out var options))
@@ -35,7 +35,7 @@ class Program
 
 		// Run violet
 		await versionFileUpdater.IncrementVersionAsync(options.FilePath, options.ReleaseType);
-    }
+	}
 
 	private static bool TryParseArgs(string[] args, [NotNullWhen(true)] out VioletOptions? options)
 	{

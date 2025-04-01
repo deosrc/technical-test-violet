@@ -6,7 +6,7 @@ public class SemanticVersioningTests
 {
 	private SemanticVersioning _sut = new();
 
-    [Theory]
+	[Theory]
 	[InlineData(ReleaseType.Patch, "0.0.0", "0.0.1")]
 	[InlineData(ReleaseType.Patch, "0.0.1", "0.0.2")]
 	[InlineData(ReleaseType.Patch, "0.0.9", "0.0.10")]
@@ -25,14 +25,14 @@ public class SemanticVersioningTests
 	[InlineData(ReleaseType.Minor, "1.0.0-rc.1", "1.1.0-rc.1")]
 	[InlineData(ReleaseType.Minor, "1.0.0+build.metadata", "1.1.0+build.metadata")]
 	[InlineData(ReleaseType.Minor, "1.0.0-rc.1+build.metadata", "1.1.0-rc.1+build.metadata")]
-    public void IncrementVersion_WhenValidArguments_ReturnsExpectedVersion(ReleaseType releaseType, string versionNumber, string expectedVersion)
-    {
+	public void IncrementVersion_WhenValidArguments_ReturnsExpectedVersion(ReleaseType releaseType, string versionNumber, string expectedVersion)
+	{
 		// Act
 		var result = _sut.IncrementVersion(versionNumber, releaseType);
 
 		// Assert
 		Assert.Equal(expectedVersion, result);
-    }
+	}
 
 	[Theory]
 	[InlineData("")]
